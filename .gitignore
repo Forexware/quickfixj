@@ -1,0 +1,16 @@
+target/
+*.project
+*.classpath
+*.settings
+*.iml
+*.ipr
+*.iws
+*.idea
+.scala_dependencies
+*.scssc
+*.iml
+*.db.trace.db
+*.idea
+lift_proto.db.*
+*.DS_Store
+*.DS_STORE
