@@ -1,49 +1,52 @@
-package quickfix.fix50.component;
 
+package quickfix.fix50.component;
 import quickfix.FieldNotFound;
 
 
-public class TrdCapDtGrp extends quickfix.MessageComponent {
-    static final long serialVersionUID = 20050617;
-    public static final String MSGTYPE = "";
-    private int[] componentFields = { 580, };
-    private int[] componentGroups = {  };
+public class TrdCapDtGrp extends quickfix.MessageComponent
+{
 
-    public TrdCapDtGrp() {
-        super();
-    }
+  static final long serialVersionUID = 20050617;
+  public static final String MSGTYPE = "";
+  
+  private int[] componentFields = { 580,  };
+  protected int[] getFields() { return componentFields; }
+  private int[] componentGroups = {  };
+  protected int[] getGroupFields() { return componentGroups; }
+  
 
-    protected int[] getFields() {
-        return componentFields;
-    }
+  public TrdCapDtGrp()
+  {
+    super();
+  }
+  
+  public void set(quickfix.field.NoDates value)
+  {
+    setField(value);
+  }
 
-    protected int[] getGroupFields() {
-        return componentGroups;
-    }
+  public quickfix.field.NoDates get(quickfix.field.NoDates  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public void set(quickfix.field.NoDates value) {
-        setField(value);
-    }
+  public quickfix.field.NoDates getNoDates() throws FieldNotFound
+  {
+    quickfix.field.NoDates value = new quickfix.field.NoDates();
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.NoDates get(quickfix.field.NoDates value)
-        throws FieldNotFound {
-        getField(value);
+  public boolean isSet(quickfix.field.NoDates field)
+  {
+    return isSetField(field);
+  }
 
-        return value;
-    }
-
-    public quickfix.field.NoDates getNoDates() throws FieldNotFound {
-        quickfix.field.NoDates value = new quickfix.field.NoDates();
-        getField(value);
-
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.NoDates field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetNoDates() {
-        return isSetField(580);
-    }
+  public boolean isSetNoDates()
+  {
+    return isSetField(580);
+  }
+  
 }
+  

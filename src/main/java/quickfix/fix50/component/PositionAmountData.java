@@ -1,138 +1,146 @@
-package quickfix.fix50.component;
 
+package quickfix.fix50.component;
 import quickfix.FieldNotFound;
+
 import quickfix.Group;
 
+public class PositionAmountData extends quickfix.MessageComponent
+{
 
-public class PositionAmountData extends quickfix.MessageComponent {
+  static final long serialVersionUID = 20050617;
+  public static final String MSGTYPE = "";
+  
+  private int[] componentFields = {  };
+  protected int[] getFields() { return componentFields; }
+  private int[] componentGroups = { 753,  };
+  protected int[] getGroupFields() { return componentGroups; }
+  
+
+  public PositionAmountData()
+  {
+    super();
+  }
+  
+  public void set(quickfix.field.NoPosAmt value)
+  {
+    setField(value);
+  }
+
+  public quickfix.field.NoPosAmt get(quickfix.field.NoPosAmt  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
+
+  public quickfix.field.NoPosAmt getNoPosAmt() throws FieldNotFound
+  {
+    quickfix.field.NoPosAmt value = new quickfix.field.NoPosAmt();
+    getField(value);
+    return value;
+  }
+
+  public boolean isSet(quickfix.field.NoPosAmt field)
+  {
+    return isSetField(field);
+  }
+
+  public boolean isSetNoPosAmt()
+  {
+    return isSetField(753);
+  }
+  
+  public static class NoPosAmt extends Group {
     static final long serialVersionUID = 20050617;
-    public static final String MSGTYPE = "";
-    private int[] componentFields = {  };
-    private int[] componentGroups = { 753, };
-
-    public PositionAmountData() {
-        super();
+    public NoPosAmt() {
+        super(753, 707,
+            new int[] {707, 708, 1055,  0 } );
     }
+    
+  public void set(quickfix.field.PosAmtType value)
+  {
+    setField(value);
+  }
 
-    protected int[] getFields() {
-        return componentFields;
-    }
+  public quickfix.field.PosAmtType get(quickfix.field.PosAmtType  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    protected int[] getGroupFields() {
-        return componentGroups;
-    }
+  public quickfix.field.PosAmtType getPosAmtType() throws FieldNotFound
+  {
+    quickfix.field.PosAmtType value = new quickfix.field.PosAmtType();
+    getField(value);
+    return value;
+  }
 
-    public void set(quickfix.field.NoPosAmt value) {
-        setField(value);
-    }
+  public boolean isSet(quickfix.field.PosAmtType field)
+  {
+    return isSetField(field);
+  }
 
-    public quickfix.field.NoPosAmt get(quickfix.field.NoPosAmt value)
-        throws FieldNotFound {
-        getField(value);
+  public boolean isSetPosAmtType()
+  {
+    return isSetField(707);
+  }
+  
+  public void set(quickfix.field.PosAmt value)
+  {
+    setField(value);
+  }
 
-        return value;
-    }
+  public quickfix.field.PosAmt get(quickfix.field.PosAmt  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.NoPosAmt getNoPosAmt() throws FieldNotFound {
-        quickfix.field.NoPosAmt value = new quickfix.field.NoPosAmt();
-        getField(value);
+  public quickfix.field.PosAmt getPosAmt() throws FieldNotFound
+  {
+    quickfix.field.PosAmt value = new quickfix.field.PosAmt();
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public boolean isSet(quickfix.field.PosAmt field)
+  {
+    return isSetField(field);
+  }
 
-    public boolean isSet(quickfix.field.NoPosAmt field) {
-        return isSetField(field);
-    }
+  public boolean isSetPosAmt()
+  {
+    return isSetField(708);
+  }
+  
+  public void set(quickfix.field.PositionCurrency value)
+  {
+    setField(value);
+  }
 
-    public boolean isSetNoPosAmt() {
-        return isSetField(753);
-    }
+  public quickfix.field.PositionCurrency get(quickfix.field.PositionCurrency  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public static class NoPosAmt extends Group {
-        static final long serialVersionUID = 20050617;
+  public quickfix.field.PositionCurrency getPositionCurrency() throws FieldNotFound
+  {
+    quickfix.field.PositionCurrency value = new quickfix.field.PositionCurrency();
+    getField(value);
+    return value;
+  }
 
-        public NoPosAmt() {
-            super(753, 707, new int[] { 707, 708, 1055, 0 });
-        }
+  public boolean isSet(quickfix.field.PositionCurrency field)
+  {
+    return isSetField(field);
+  }
 
-        public void set(quickfix.field.PosAmtType value) {
-            setField(value);
-        }
-
-        public quickfix.field.PosAmtType get(quickfix.field.PosAmtType value)
-            throws FieldNotFound {
-            getField(value);
-
-            return value;
-        }
-
-        public quickfix.field.PosAmtType getPosAmtType()
-            throws FieldNotFound {
-            quickfix.field.PosAmtType value = new quickfix.field.PosAmtType();
-            getField(value);
-
-            return value;
-        }
-
-        public boolean isSet(quickfix.field.PosAmtType field) {
-            return isSetField(field);
-        }
-
-        public boolean isSetPosAmtType() {
-            return isSetField(707);
-        }
-
-        public void set(quickfix.field.PosAmt value) {
-            setField(value);
-        }
-
-        public quickfix.field.PosAmt get(quickfix.field.PosAmt value)
-            throws FieldNotFound {
-            getField(value);
-
-            return value;
-        }
-
-        public quickfix.field.PosAmt getPosAmt() throws FieldNotFound {
-            quickfix.field.PosAmt value = new quickfix.field.PosAmt();
-            getField(value);
-
-            return value;
-        }
-
-        public boolean isSet(quickfix.field.PosAmt field) {
-            return isSetField(field);
-        }
-
-        public boolean isSetPosAmt() {
-            return isSetField(708);
-        }
-
-        public void set(quickfix.field.PositionCurrency value) {
-            setField(value);
-        }
-
-        public quickfix.field.PositionCurrency get(
-            quickfix.field.PositionCurrency value) throws FieldNotFound {
-            getField(value);
-
-            return value;
-        }
-
-        public quickfix.field.PositionCurrency getPositionCurrency()
-            throws FieldNotFound {
-            quickfix.field.PositionCurrency value = new quickfix.field.PositionCurrency();
-            getField(value);
-
-            return value;
-        }
-
-        public boolean isSet(quickfix.field.PositionCurrency field) {
-            return isSetField(field);
-        }
-
-        public boolean isSetPositionCurrency() {
-            return isSetField(1055);
-        }
-    }
+  public boolean isSetPositionCurrency()
+  {
+    return isSetField(1055);
+  }
+  
+  }
+  
 }
+  

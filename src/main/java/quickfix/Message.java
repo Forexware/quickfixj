@@ -464,7 +464,7 @@ public class Message extends FieldMap {
 
         try {
             parseHeader(sessionDataDictionary, doValidation);
-            parseBody(applicationDataDictionary);
+            parseBody(applicationDataDictionary, doValidation);
             parseTrailer(sessionDataDictionary);
             if (doValidation) {
                 validateCheckSum(messageData);
@@ -531,7 +531,7 @@ public class Message extends FieldMap {
         return res;
     }
 
-    private void parseBody(DataDictionary dd) throws InvalidMessage {
+    private void parseBody(DataDictionary dd, boolean doValidation) throws InvalidMessage {
         StringField field = extractField(dd, this);
         while (field != null) {
             if (isTrailerField(field.getField())) {
@@ -543,16 +543,20 @@ public class Message extends FieldMap {
                 // An acceptance test requires the sequence number to
                 // be available even if the related field is out of order
                 setField(header, field);
-                throw new FieldException(SessionRejectReason.TAG_SPECIFIED_OUT_OF_REQUIRED_ORDER,
+                // Group case
+                if (dd != null && dd.isGroup(DataDictionary.HEADER_ID, field.getField())) {
+                    parseGroup(DataDictionary.HEADER_ID, field, dd, header);
+                }
+                if (doValidation && dd != null && dd.isCheckFieldsOutOfOrder()) throw new FieldException(SessionRejectReason.TAG_SPECIFIED_OUT_OF_REQUIRED_ORDER,
                         field.getTag());
+            } else {
+                setField(this, field);
+                // Group case
+                if (dd != null && dd.isGroup(getMsgType(), field.getField())) {
+                    parseGroup(getMsgType(), field, dd, this);
+                }
             }
 
-            setField(this, field);
-
-            // Group case
-            if (dd != null && dd.isGroup(getMsgType(), field.getField())) {
-                parseGroup(getMsgType(), field, dd, this);
-            }
 
             field = extractField(dd, this);
         }
@@ -573,7 +577,7 @@ public class Message extends FieldMap {
         int previousOffset = -1;
         final int groupCountTag = field.getField();
         final int declaredGroupCount = Integer.parseInt(field.getValue());
-
+        parent.setField(groupCountTag, field);
         final int firstField = rg.getDelimeterField();
         boolean firstFieldFound = false;
         Group group = null;
@@ -582,7 +586,7 @@ public class Message extends FieldMap {
             field = extractField(group, dd, parent);
             if (field.getTag() == firstField) {
                 if (group != null) {
-                    parent.addGroup(group);
+                    parent.addGroupRef(group);
                 }
                 group = new Group(groupCountTag, firstField, groupDataDictionary.getOrderedFields());
                 group.setField(field);
@@ -604,7 +608,7 @@ public class Message extends FieldMap {
                                             .getTag());
                         }
 
-                        if (fieldOrder != null && dd.isCheckFieldsOutOfOrder()) {
+                        if (fieldOrder != null && dd.isCheckUnorderedGroupFields()) {
                             final int offset = index(fieldOrder, field.getTag());
                             if (offset >= 0) {
                                 if (offset > previousOffset) {
@@ -621,7 +625,7 @@ public class Message extends FieldMap {
                         }
                     } else {
                         if (group != null) {
-                            parent.addGroup(group);
+                            parent.addGroupRef(group);
                         }
                         pushBack(field);
                         inGroupParse = false;

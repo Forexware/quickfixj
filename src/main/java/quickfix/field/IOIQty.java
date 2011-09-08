@@ -1,40 +1,48 @@
 /*******************************************************************************
- * Copyright (c) quickfixengine.org  All rights reserved.
- *
- * This file is part of the QuickFIX FIX Engine
- *
- * This file may be distributed under the terms of the quickfixengine.org
- * license as defined by quickfixengine.org and appearing in the file
- * LICENSE included in the packaging of this file.
- *
- * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING
- * THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A
- * PARTICULAR PURPOSE.
- *
- * See http://www.quickfixengine.org/LICENSE for licensing information.
- *
- * Contact ask@quickfixengine.org if any conditions of this licensing
+ * Copyright (c) quickfixengine.org  All rights reserved. 
+ * 
+ * This file is part of the QuickFIX FIX Engine 
+ * 
+ * This file may be distributed under the terms of the quickfixengine.org 
+ * license as defined by quickfixengine.org and appearing in the file 
+ * LICENSE included in the packaging of this file. 
+ * 
+ * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING 
+ * THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A 
+ * PARTICULAR PURPOSE. 
+ * 
+ * See http://www.quickfixengine.org/LICENSE for licensing information. 
+ * 
+ * Contact ask@quickfixengine.org if any conditions of this licensing 
  * are not clear to you.
  ******************************************************************************/
-package quickfix.field;
 
+package quickfix.field;
 import quickfix.StringField;
 
 
-public class IOIQty extends StringField {
-    static final long serialVersionUID = 20050617;
-    public static final int FIELD = 27;
-    public static final String _1000000000 = "0";
-    public static final String SMALL = "S";
-    public static final String MEDIUM = "M";
-    public static final String LARGE = "L";
-    public static final String UNDISCLOSED_QUANTITY = "U";
+public class IOIQty extends StringField 
+{ 
+  static final long serialVersionUID = 20050617;
 
-    public IOIQty() {
-        super(27);
-    }
-
-    public IOIQty(String data) {
-        super(27, data);
-    }
+  public static final int FIELD = 27; 
+  public static final String _1000000000 = "0"; 
+  public static final String SMALL = "S"; 
+  public static final String MEDIUM = "M"; 
+  public static final String LARGE = "L"; 
+  public static final String UNDISCLOSED_QUANTITY = "U"; 
+  
+  public IOIQty() 
+  { 
+    super(27);
+  } 
+   
+  public IOIQty(String data) 
+  { 
+     super(27, data);
+  } 
+  
+  
 }
+
+  

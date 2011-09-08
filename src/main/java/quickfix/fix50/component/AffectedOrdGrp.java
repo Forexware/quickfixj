@@ -1,50 +1,52 @@
-package quickfix.fix50.component;
 
+package quickfix.fix50.component;
 import quickfix.FieldNotFound;
 
 
-public class AffectedOrdGrp extends quickfix.MessageComponent {
-    static final long serialVersionUID = 20050617;
-    public static final String MSGTYPE = "";
-    private int[] componentFields = { 534, };
-    private int[] componentGroups = {  };
+public class AffectedOrdGrp extends quickfix.MessageComponent
+{
 
-    public AffectedOrdGrp() {
-        super();
-    }
+  static final long serialVersionUID = 20050617;
+  public static final String MSGTYPE = "";
+  
+  private int[] componentFields = { 534,  };
+  protected int[] getFields() { return componentFields; }
+  private int[] componentGroups = {  };
+  protected int[] getGroupFields() { return componentGroups; }
+  
 
-    protected int[] getFields() {
-        return componentFields;
-    }
+  public AffectedOrdGrp()
+  {
+    super();
+  }
+  
+  public void set(quickfix.field.NoAffectedOrders value)
+  {
+    setField(value);
+  }
 
-    protected int[] getGroupFields() {
-        return componentGroups;
-    }
+  public quickfix.field.NoAffectedOrders get(quickfix.field.NoAffectedOrders  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public void set(quickfix.field.NoAffectedOrders value) {
-        setField(value);
-    }
+  public quickfix.field.NoAffectedOrders getNoAffectedOrders() throws FieldNotFound
+  {
+    quickfix.field.NoAffectedOrders value = new quickfix.field.NoAffectedOrders();
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.NoAffectedOrders get(
-        quickfix.field.NoAffectedOrders value) throws FieldNotFound {
-        getField(value);
+  public boolean isSet(quickfix.field.NoAffectedOrders field)
+  {
+    return isSetField(field);
+  }
 
-        return value;
-    }
-
-    public quickfix.field.NoAffectedOrders getNoAffectedOrders()
-        throws FieldNotFound {
-        quickfix.field.NoAffectedOrders value = new quickfix.field.NoAffectedOrders();
-        getField(value);
-
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.NoAffectedOrders field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetNoAffectedOrders() {
-        return isSetField(534);
-    }
+  public boolean isSetNoAffectedOrders()
+  {
+    return isSetField(534);
+  }
+  
 }
+  

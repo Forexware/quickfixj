@@ -19,6 +19,10 @@
 
 package quickfix.mina.acceptor;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+
 import org.apache.mina.common.IoSession;
 
 import quickfix.Log;
@@ -43,22 +47,25 @@ class AcceptorIoHandler extends AbstractIoHandler {
             NetworkingOptions networkingOptions, EventHandlingStrategy eventHandingStrategy) {
         super(networkingOptions);
         this.sessionProvider = sessionProvider;
-        this.eventHandlingStrategy = eventHandingStrategy;
+        eventHandlingStrategy = eventHandingStrategy;
     }
 
+    @Override
     public void sessionCreated(IoSession session) throws Exception {
         super.sessionCreated(session);
         log.info("MINA session created: " + session.getRemoteAddress());
     }
 
+    @Override
     protected void processMessage(IoSession protocolSession, Message message) throws Exception {
         Session qfSession = (Session) protocolSession.getAttribute(SessionConnector.QF_SESSION);
         if (qfSession == null) {
             if (message.getHeader().getString(MsgType.FIELD).equals(MsgType.LOGON)) {
-                SessionID sessionID = MessageUtils.getReverseSessionID(message);
-                qfSession = sessionProvider.getSession(sessionID, eventHandlingStrategy.getSessionConnector());
+                final SessionID sessionID = MessageUtils.getReverseSessionID(message);
+                qfSession = sessionProvider.getSession(sessionID,
+                        eventHandlingStrategy.getSessionConnector());
                 if (qfSession != null) {
-                    Log sessionLog = qfSession.getLog();
+                    final Log sessionLog = qfSession.getLog();
                     if (qfSession.hasResponder()) {
                         // Session is already bound to another connection
                         sessionLog
@@ -68,15 +75,15 @@ class AcceptorIoHandler extends AbstractIoHandler {
                     }
                     sessionLog.onEvent("Accepting session " + qfSession.getSessionID() + " from "
                             + protocolSession.getRemoteAddress());
-                    int heartbeatInterval = message.getInt(HeartBtInt.FIELD);
+                    final int heartbeatInterval = message.getInt(HeartBtInt.FIELD);
                     qfSession.setHeartBeatInterval(heartbeatInterval);
                     sessionLog.onEvent("Acceptor heartbeat set to " + heartbeatInterval
                             + " seconds");
                     protocolSession.setAttribute(SessionConnector.QF_SESSION, qfSession);
-                    NetworkingOptions networkingOptions = getNetworkingOptions();
+                    final NetworkingOptions networkingOptions = getNetworkingOptions();
                     qfSession.setResponder(new IoSessionResponder(protocolSession,
-                            networkingOptions.getSynchronousWrites(),
-                            networkingOptions.getSynchronousWriteTimeout()));
+                            networkingOptions.getSynchronousWrites(), networkingOptions
+                                    .getSynchronousWriteTimeout()));
                 } else {
                     log.error("Unknown session ID during logon: " + sessionID);
                     return;
@@ -86,25 +93,29 @@ class AcceptorIoHandler extends AbstractIoHandler {
                 return;
             }
         }
-    
-        if (qfSession == null) {
-            // [QFJ-117] this can happen if a late test request arrives after we 
-            // gave up waiting and closed the session.
-            log.error("Attempt to process message for non existant or closed session (only "
-                    + "legal action for logon messages). MsgType="
-                    + message.getHeader().getString(MsgType.FIELD));
-        } else {
-            eventHandlingStrategy.onMessage(qfSession, message);
-        }
+
+        eventHandlingStrategy.onMessage(qfSession, message);      
     }
 
+    @Override
     protected Session findQFSession(IoSession protocolSession, SessionID sessionID) {
         Session s = super.findQFSession(protocolSession, sessionID);
         if (s == null) {
             s = sessionProvider.getSession(sessionID, eventHandlingStrategy.getSessionConnector());
         }
+        if (s != null && protocolSession.getAttribute(SessionConnector.QF_SESSION) == null) {          
+            SocketAddress remoteAddress = protocolSession.getRemoteAddress();
+            if (remoteAddress instanceof InetSocketAddress) {
+                final InetAddress remoteInetAddress = ((InetSocketAddress) remoteAddress).getAddress();
+                if (!s.isAllowedForSession(remoteInetAddress)) {
+                    s.getLog().onEvent(
+                            "Refused connection to session " + s.getSessionID() + " from "
+                                    + remoteAddress);
+                    return null;
+                }
+            }
+        }
         return s;
     }
-    
-    
+
 }

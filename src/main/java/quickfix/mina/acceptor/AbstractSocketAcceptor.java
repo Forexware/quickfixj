@@ -70,7 +70,6 @@ public abstract class AbstractSocketAcceptor extends SessionConnector implements
     private final SessionFactory sessionFactory;
     private final Map<SocketAddress, AcceptorSocketDescriptor> socketDescriptorForAddress = new HashMap<SocketAddress, AcceptorSocketDescriptor>();
     private final Map<TransportType, IoAcceptor> ioAcceptorForTransport = new HashMap<TransportType, IoAcceptor>();
-    private EventHandlingStrategy eventHandlingStrategy;
 
     protected AbstractSocketAcceptor(SessionSettings settings, SessionFactory sessionFactory)
             throws ConfigError {
@@ -100,10 +99,8 @@ public abstract class AbstractSocketAcceptor extends SessionConnector implements
     }
 
     // TODO SYNC Does this method really need synchronization?
-    protected synchronized void startAcceptingConnections(
-            EventHandlingStrategy eventHandlingStrategy) throws ConfigError {
+    protected synchronized void startAcceptingConnections() throws ConfigError {
         try {
-            this.eventHandlingStrategy = eventHandlingStrategy;
             startSessionTimer();
             SessionSettings settings = getSettings();
 
@@ -130,7 +127,7 @@ public abstract class AbstractSocketAcceptor extends SessionConnector implements
                 AcceptorSessionProvider sessionProvider = sessionProviders
                         .get(socketDescriptor.getAddress());
                 if (sessionProvider == null) {
-                    sessionProvider = new StaticAcceptorSessionProvider(socketDescriptor
+                    sessionProvider = new DefaultAcceptorSessionProvider(socketDescriptor
                             .getAcceptedSessions());
                 }
 
@@ -140,7 +137,7 @@ public abstract class AbstractSocketAcceptor extends SessionConnector implements
                 
                 ioAcceptor.bind(socketDescriptor.getAddress(), new AcceptorIoHandler(
                         sessionProvider, new NetworkingOptions(settings.getDefaultProperties()),
-                        eventHandlingStrategy));
+                        getEventHandlingStrategy()));
                 log.info("Listening for connections at " + socketDescriptor.getAddress());
             }
         } catch (FieldConvertError e) {
@@ -347,9 +344,39 @@ public abstract class AbstractSocketAcceptor extends SessionConnector implements
             return acceptorSessions.get(sessionID);
         }
     }
-
+    
     public int getQueueSize() {
-        return eventHandlingStrategy == null ? 0 : eventHandlingStrategy.getQueueSize();
+        final EventHandlingStrategy ehs = getEventHandlingStrategy();
+        return ehs == null ? 0 : ehs.getQueueSize();
     }
 
+    protected abstract EventHandlingStrategy getEventHandlingStrategy() ;
+
+    private class DefaultAcceptorSessionProvider
+        implements AcceptorSessionProvider
+    {
+        private final Map<SessionID,Session> acceptorSessions;
+
+        public DefaultAcceptorSessionProvider(Map<SessionID, Session> acceptorSessions)
+        {
+            this.acceptorSessions = acceptorSessions;
+        }
+
+        public Session getSession(SessionID sessionID, SessionConnector ignored)
+        {
+            Session session = acceptorSessions.get(sessionID);
+            if(session == null)
+                session = acceptorSessions.get(reduceSessionID(sessionID));
+            return session;
+        }
+
+        /**
+         * Remove the extra fields added to the session ID in QF-272.
+         */
+        private SessionID reduceSessionID(SessionID sessionID)
+        {
+            // Acceptors don't use qualifiers.
+            return new SessionID(sessionID.getBeginString(), sessionID.getSenderCompID(), sessionID.getTargetCompID());
+        }
+    }
 }

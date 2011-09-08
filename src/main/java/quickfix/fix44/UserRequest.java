@@ -1,209 +1,223 @@
-package quickfix.fix44;
 
+package quickfix.fix44;
 import quickfix.FieldNotFound;
 
 
-public class UserRequest extends Message {
-    static final long serialVersionUID = 20050617;
-    public static final String MSGTYPE = "BE";
+public class UserRequest extends Message
+{
 
-    public UserRequest() {
-        super();
-        getHeader().setField(new quickfix.field.MsgType(MSGTYPE));
-    }
+  static final long serialVersionUID = 20050617;
+  public static final String MSGTYPE = "BE";
+  
 
-    public UserRequest(quickfix.field.UserRequestID userRequestID,
-        quickfix.field.UserRequestType userRequestType,
-        quickfix.field.Username username) {
-        this();
-        setField(userRequestID);
-        setField(userRequestType);
-        setField(username);
-    }
+  public UserRequest()
+  {
+    super();
+    getHeader().setField(new quickfix.field.MsgType(MSGTYPE));
+  }
+  
+  public UserRequest(quickfix.field.UserRequestID userRequestID, quickfix.field.UserRequestType userRequestType, quickfix.field.Username username) {
+    this();
+    setField(userRequestID);
+    setField(userRequestType);
+    setField(username);
+  }
+    
+  public void set(quickfix.field.UserRequestID value)
+  {
+    setField(value);
+  }
 
-    public void set(quickfix.field.UserRequestID value) {
-        setField(value);
-    }
+  public quickfix.field.UserRequestID get(quickfix.field.UserRequestID  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.UserRequestID get(quickfix.field.UserRequestID value)
-        throws FieldNotFound {
-        getField(value);
+  public quickfix.field.UserRequestID getUserRequestID() throws FieldNotFound
+  {
+    quickfix.field.UserRequestID value = new quickfix.field.UserRequestID();
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public boolean isSet(quickfix.field.UserRequestID field)
+  {
+    return isSetField(field);
+  }
 
-    public quickfix.field.UserRequestID getUserRequestID()
-        throws FieldNotFound {
-        quickfix.field.UserRequestID value = new quickfix.field.UserRequestID();
-        getField(value);
+  public boolean isSetUserRequestID()
+  {
+    return isSetField(923);
+  }
+  
+  public void set(quickfix.field.UserRequestType value)
+  {
+    setField(value);
+  }
 
-        return value;
-    }
+  public quickfix.field.UserRequestType get(quickfix.field.UserRequestType  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public boolean isSet(quickfix.field.UserRequestID field) {
-        return isSetField(field);
-    }
+  public quickfix.field.UserRequestType getUserRequestType() throws FieldNotFound
+  {
+    quickfix.field.UserRequestType value = new quickfix.field.UserRequestType();
+    getField(value);
+    return value;
+  }
 
-    public boolean isSetUserRequestID() {
-        return isSetField(923);
-    }
+  public boolean isSet(quickfix.field.UserRequestType field)
+  {
+    return isSetField(field);
+  }
 
-    public void set(quickfix.field.UserRequestType value) {
-        setField(value);
-    }
+  public boolean isSetUserRequestType()
+  {
+    return isSetField(924);
+  }
+  
+  public void set(quickfix.field.Username value)
+  {
+    setField(value);
+  }
 
-    public quickfix.field.UserRequestType get(
-        quickfix.field.UserRequestType value) throws FieldNotFound {
-        getField(value);
+  public quickfix.field.Username get(quickfix.field.Username  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public quickfix.field.Username getUsername() throws FieldNotFound
+  {
+    quickfix.field.Username value = new quickfix.field.Username();
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.UserRequestType getUserRequestType()
-        throws FieldNotFound {
-        quickfix.field.UserRequestType value = new quickfix.field.UserRequestType();
-        getField(value);
+  public boolean isSet(quickfix.field.Username field)
+  {
+    return isSetField(field);
+  }
 
-        return value;
-    }
+  public boolean isSetUsername()
+  {
+    return isSetField(553);
+  }
+  
+  public void set(quickfix.field.Password value)
+  {
+    setField(value);
+  }
 
-    public boolean isSet(quickfix.field.UserRequestType field) {
-        return isSetField(field);
-    }
+  public quickfix.field.Password get(quickfix.field.Password  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public boolean isSetUserRequestType() {
-        return isSetField(924);
-    }
+  public quickfix.field.Password getPassword() throws FieldNotFound
+  {
+    quickfix.field.Password value = new quickfix.field.Password();
+    getField(value);
+    return value;
+  }
 
-    public void set(quickfix.field.Username value) {
-        setField(value);
-    }
+  public boolean isSet(quickfix.field.Password field)
+  {
+    return isSetField(field);
+  }
 
-    public quickfix.field.Username get(quickfix.field.Username value)
-        throws FieldNotFound {
-        getField(value);
+  public boolean isSetPassword()
+  {
+    return isSetField(554);
+  }
+  
+  public void set(quickfix.field.NewPassword value)
+  {
+    setField(value);
+  }
 
-        return value;
-    }
+  public quickfix.field.NewPassword get(quickfix.field.NewPassword  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.Username getUsername() throws FieldNotFound {
-        quickfix.field.Username value = new quickfix.field.Username();
-        getField(value);
+  public quickfix.field.NewPassword getNewPassword() throws FieldNotFound
+  {
+    quickfix.field.NewPassword value = new quickfix.field.NewPassword();
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public boolean isSet(quickfix.field.NewPassword field)
+  {
+    return isSetField(field);
+  }
 
-    public boolean isSet(quickfix.field.Username field) {
-        return isSetField(field);
-    }
+  public boolean isSetNewPassword()
+  {
+    return isSetField(925);
+  }
+  
+  public void set(quickfix.field.RawDataLength value)
+  {
+    setField(value);
+  }
 
-    public boolean isSetUsername() {
-        return isSetField(553);
-    }
+  public quickfix.field.RawDataLength get(quickfix.field.RawDataLength  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-    public void set(quickfix.field.Password value) {
-        setField(value);
-    }
+  public quickfix.field.RawDataLength getRawDataLength() throws FieldNotFound
+  {
+    quickfix.field.RawDataLength value = new quickfix.field.RawDataLength();
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.Password get(quickfix.field.Password value)
-        throws FieldNotFound {
-        getField(value);
+  public boolean isSet(quickfix.field.RawDataLength field)
+  {
+    return isSetField(field);
+  }
 
-        return value;
-    }
+  public boolean isSetRawDataLength()
+  {
+    return isSetField(95);
+  }
+  
+  public void set(quickfix.field.RawData value)
+  {
+    setField(value);
+  }
 
-    public quickfix.field.Password getPassword() throws FieldNotFound {
-        quickfix.field.Password value = new quickfix.field.Password();
-        getField(value);
+  public quickfix.field.RawData get(quickfix.field.RawData  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public quickfix.field.RawData getRawData() throws FieldNotFound
+  {
+    quickfix.field.RawData value = new quickfix.field.RawData();
+    getField(value);
+    return value;
+  }
 
-    public boolean isSet(quickfix.field.Password field) {
-        return isSetField(field);
-    }
+  public boolean isSet(quickfix.field.RawData field)
+  {
+    return isSetField(field);
+  }
 
-    public boolean isSetPassword() {
-        return isSetField(554);
-    }
-
-    public void set(quickfix.field.NewPassword value) {
-        setField(value);
-    }
-
-    public quickfix.field.NewPassword get(quickfix.field.NewPassword value)
-        throws FieldNotFound {
-        getField(value);
-
-        return value;
-    }
-
-    public quickfix.field.NewPassword getNewPassword()
-        throws FieldNotFound {
-        quickfix.field.NewPassword value = new quickfix.field.NewPassword();
-        getField(value);
-
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.NewPassword field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetNewPassword() {
-        return isSetField(925);
-    }
-
-    public void set(quickfix.field.RawDataLength value) {
-        setField(value);
-    }
-
-    public quickfix.field.RawDataLength get(quickfix.field.RawDataLength value)
-        throws FieldNotFound {
-        getField(value);
-
-        return value;
-    }
-
-    public quickfix.field.RawDataLength getRawDataLength()
-        throws FieldNotFound {
-        quickfix.field.RawDataLength value = new quickfix.field.RawDataLength();
-        getField(value);
-
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.RawDataLength field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetRawDataLength() {
-        return isSetField(95);
-    }
-
-    public void set(quickfix.field.RawData value) {
-        setField(value);
-    }
-
-    public quickfix.field.RawData get(quickfix.field.RawData value)
-        throws FieldNotFound {
-        getField(value);
-
-        return value;
-    }
-
-    public quickfix.field.RawData getRawData() throws FieldNotFound {
-        quickfix.field.RawData value = new quickfix.field.RawData();
-        getField(value);
-
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.RawData field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetRawData() {
-        return isSetField(96);
-    }
+  public boolean isSetRawData()
+  {
+    return isSetField(96);
+  }
+  
 }
+  

@@ -60,7 +60,6 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
     private final Set<IoSessionInitiator> initiators = new HashSet<IoSessionInitiator>();
-    private EventHandlingStrategy eventHandlingStrategy;
 
     protected AbstractSocketInitiator(Application application,
             MessageStoreFactory messageStoreFactory, SessionSettings settings,
@@ -72,18 +71,15 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
     protected AbstractSocketInitiator(SessionSettings settings, SessionFactory sessionFactory)
             throws ConfigError {
         super(settings, sessionFactory);
-        //try {
-        ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
-        ByteBuffer.setUseDirectBuffers(false);
-        //        } catch (FieldConvertError e) {
-        //            throw new ConfigError(e);
-        //        }
+            ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
+            ByteBuffer.setUseDirectBuffers(false);
     }
 
-    protected void createSessionInitiators(EventHandlingStrategy eventHandlingStrategy)
+    protected void createSessionInitiators()
             throws ConfigError {
         try {
             createSessions();
+            SessionSettings settings = getSettings();
             for (final Session session : getSessionMap().values()) {
                 final SessionID sessionID = session.getSessionID();
                 final int[] reconnectingIntervals = getReconnectIntervalInSeconds(sessionID);
@@ -92,6 +88,8 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
                 if (socketAddresses.length == 0) {
                     throw new ConfigError("Must specify at least one socket address");
                 }
+                
+                SocketAddress localAddress = getLocalAddress(settings, sessionID);
 
                 final NetworkingOptions networkingOptions = new NetworkingOptions(getSettings()
                         .getSessionProperties(sessionID, true));
@@ -114,8 +112,8 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
                         : null;
 
                 final IoSessionInitiator ioSessionInitiator = new IoSessionInitiator(session,
-                        socketAddresses, reconnectingIntervals, getScheduledExecutorService(),
-                        networkingOptions, eventHandlingStrategy, getIoFilterChainBuilder(),
+                        socketAddresses, localAddress, reconnectingIntervals, getScheduledExecutorService(),
+                        networkingOptions, getEventHandlingStrategy(), getIoFilterChainBuilder(),
                         sslEnabled, keyStoreName, keyStorePassword, enableProtocole, cipherSuites);
 
                 initiators.add(ioSessionInitiator);
@@ -123,6 +121,28 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
         } catch (final FieldConvertError e) {
             throw new ConfigError(e);
         }
+    }
+
+    //QFJ-482
+    private SocketAddress getLocalAddress(SessionSettings settings, final SessionID sessionID)
+            throws ConfigError, FieldConvertError {
+        // Check if use of socket local/bind address
+        SocketAddress localAddress = null;
+        if (settings.isSetting(sessionID, Initiator.SETTING_SOCKET_LOCAL_HOST)) {
+            String host = settings.getString(sessionID, Initiator.SETTING_SOCKET_LOCAL_HOST);
+            if ("localhost".equals(host)) {
+                throw new ConfigError(Initiator.SETTING_SOCKET_LOCAL_HOST + " cannot be \"localhost\"!");
+            }
+            int port = 0;
+            if (settings.isSetting(sessionID, Initiator.SETTING_SOCKET_LOCAL_PORT)) {
+                port = (int) settings.getLong(sessionID, Initiator.SETTING_SOCKET_LOCAL_PORT);
+            }
+            localAddress = ProtocolFactory.createSocketAddress(TransportType.SOCKET, host, port);
+            if (log.isInfoEnabled()) {
+                log.info("Using initiator local host: " + localAddress);
+            }
+        }
+        return localAddress;
     }
 
     private void createSessions() throws ConfigError, FieldConvertError {
@@ -243,6 +263,9 @@ public abstract class AbstractSocketInitiator extends SessionConnector implement
     }
 
     public int getQueueSize() {
-        return eventHandlingStrategy == null ? 0 : eventHandlingStrategy.getQueueSize();
+        final EventHandlingStrategy ehs = getEventHandlingStrategy();
+        return ehs == null ? 0 : ehs.getQueueSize();
     }
+
+    protected abstract EventHandlingStrategy getEventHandlingStrategy() ;
 }

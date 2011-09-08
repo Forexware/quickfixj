@@ -74,6 +74,7 @@ public class DataDictionary {
     private boolean checkFieldsOutOfOrder = true;
     private boolean checkFieldsHaveValues = true;
     private boolean checkUserDefinedFields = true;
+    private boolean checkUnorderedGroupFields = true;
     private boolean allowUnknownMessageFields = false;
     private String beginString;
     private final Map<String, Set<Integer>> messageFields = new HashMap<String, Set<Integer>>();
@@ -494,6 +495,20 @@ public class DataDictionary {
         return checkFieldsOutOfOrder;
     }
 
+    public boolean isCheckUnorderedGroupFields() {
+        return checkUnorderedGroupFields;
+    }
+
+    /**
+     * Controls whether group fields are in the same order
+     * @param flag   true = checked, false = not checked
+     */
+    public void setCheckUnorderedGroupFields(boolean flag) {
+        checkUnorderedGroupFields = flag;
+        for (GroupInfo gi : groups.values()) {
+            gi.getDataDictionary().setCheckUnorderedGroupFields(flag);
+        }
+    }
     /**
      * Controls whether empty field values are checked.
      *
@@ -502,6 +517,9 @@ public class DataDictionary {
      */
     public void setCheckFieldsHaveValues(boolean flag) {
         checkFieldsHaveValues = flag;
+        for (GroupInfo gi : groups.values()) {
+            gi.getDataDictionary().setCheckFieldsHaveValues(flag);
+        }
     }
 
     /**
@@ -512,8 +530,18 @@ public class DataDictionary {
      */
     public void setCheckUserDefinedFields(boolean flag) {
         checkUserDefinedFields = flag;
+        for (GroupInfo gi : groups.values()) {
+            gi.getDataDictionary().setCheckUserDefinedFields(flag);
+        }
     }
 
+    public void setAllowUnknownMessageFields(boolean allowUnknownFields) {
+        allowUnknownMessageFields = allowUnknownFields;
+        for (GroupInfo gi : groups.values()) {
+            gi.getDataDictionary().setAllowUnknownMessageFields(allowUnknownFields);
+        }
+    }
+    
     private void copyFrom(DataDictionary rhs) {
         hasVersion = rhs.hasVersion;
         beginString = rhs.beginString;
@@ -535,30 +563,29 @@ public class DataDictionary {
     }
 
     @SuppressWarnings("unchecked")
-    private void copyMap(Map lhs, Map rhs) {
+    private <K,V> void copyMap(Map<K,V> lhs, Map<K,V> rhs) {
         lhs.clear();
-        final Iterator entries = rhs.entrySet().iterator();
+        final Iterator<?> entries = rhs.entrySet().iterator();
         while (entries.hasNext()) {
-            final Map.Entry entry = (Map.Entry) entries.next();
+            final Map.Entry<K,V> entry = (Map.Entry<K,V>) entries.next();
             Object value = entry.getValue();
             if (value instanceof Collection) {
-                Collection copy;
+                Collection<V> copy;
                 try {
-                    copy = (Collection) value.getClass().newInstance();
+                    copy = (Collection<V>) value.getClass().newInstance();
                 } catch (final RuntimeException e) {
                     throw e;
                 } catch (final java.lang.Exception e) {
                     throw new RuntimeException(e);
                 }
-                copyCollection(copy, (Collection) value);
+                copyCollection(copy, (Collection<V>) value);
                 value = copy;
             }
-            lhs.put(entry.getKey(), value);
+            lhs.put(entry.getKey(), (V) value);
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private void copyCollection(Collection lhs, Collection rhs) {
+    private <V> void copyCollection(Collection<V> lhs, Collection<V> rhs) {
         lhs.clear();
         lhs.addAll(rhs);
     }
@@ -1229,13 +1256,13 @@ public class DataDictionary {
             stringValue = value2;
         }
 
-        public int getIntValue() {
-            return intValue;
-        }
+        //public int getIntValue() {
+        //    return intValue;
+        //}
 
-        public String getStringValue() {
-            return stringValue;
-        }
+        //public String getStringValue() {
+        //    return stringValue;
+        //}
 
         public boolean equals(Object other) {
             if (this == other) {
@@ -1304,7 +1331,4 @@ public class DataDictionary {
         }
     }
 
-    public void setAllowUnknownMessageFields(boolean allowUnknownFields) {
-        allowUnknownMessageFields = allowUnknownFields;
-    }
 }

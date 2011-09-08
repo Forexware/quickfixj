@@ -1,40 +1,48 @@
-package quickfix.fix44;
 
+package quickfix.fix44;
 import quickfix.FieldNotFound;
 
 
-public class Heartbeat extends Message {
-    static final long serialVersionUID = 20050617;
-    public static final String MSGTYPE = "0";
+public class Heartbeat extends Message
+{
 
-    public Heartbeat() {
-        super();
-        getHeader().setField(new quickfix.field.MsgType(MSGTYPE));
-    }
+  static final long serialVersionUID = 20050617;
+  public static final String MSGTYPE = "0";
+  
 
-    public void set(quickfix.field.TestReqID value) {
-        setField(value);
-    }
+  public Heartbeat()
+  {
+    super();
+    getHeader().setField(new quickfix.field.MsgType(MSGTYPE));
+  }
+  
+  public void set(quickfix.field.TestReqID value)
+  {
+    setField(value);
+  }
 
-    public quickfix.field.TestReqID get(quickfix.field.TestReqID value)
-        throws FieldNotFound {
-        getField(value);
+  public quickfix.field.TestReqID get(quickfix.field.TestReqID  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
 
-        return value;
-    }
+  public quickfix.field.TestReqID getTestReqID() throws FieldNotFound
+  {
+    quickfix.field.TestReqID value = new quickfix.field.TestReqID();
+    getField(value);
+    return value;
+  }
 
-    public quickfix.field.TestReqID getTestReqID() throws FieldNotFound {
-        quickfix.field.TestReqID value = new quickfix.field.TestReqID();
-        getField(value);
+  public boolean isSet(quickfix.field.TestReqID field)
+  {
+    return isSetField(field);
+  }
 
-        return value;
-    }
-
-    public boolean isSet(quickfix.field.TestReqID field) {
-        return isSetField(field);
-    }
-
-    public boolean isSetTestReqID() {
-        return isSetField(112);
-    }
+  public boolean isSetTestReqID()
+  {
+    return isSetField(112);
+  }
+  
 }
+  

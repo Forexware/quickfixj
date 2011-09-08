@@ -27,7 +27,6 @@ import org.quickfixj.QFJException;
 import quickfix.Message.Header;
 import quickfix.field.ApplVerID;
 import quickfix.field.BeginString;
-import quickfix.field.CstmApplVerID;
 import quickfix.field.DefaultApplVerID;
 import quickfix.field.MsgType;
 import quickfix.field.SenderCompID;
@@ -126,11 +125,9 @@ public class MessageUtils {
         final String msgType = getMessageType(messageString);
 
         ApplVerID applVerID = null;
-        String customApplVerID = null;
 
         if (FixVersions.BEGINSTRING_FIXT11.equals(beginString)) {
             applVerID = getApplVerID(session, messageString);
-            customApplVerID = getStringField(messageString, CstmApplVerID.FIELD);
         } else {
             applVerID = toApplVerID(beginString);
         }
@@ -141,7 +138,7 @@ public class MessageUtils {
         final DataDictionary sessionDataDictionary = ddProvider == null ? null : ddProvider
                 .getSessionDataDictionary(beginString);
         final DataDictionary applicationDataDictionary = ddProvider == null ? null : ddProvider
-                .getApplicationDataDictionary(applVerID, customApplVerID);
+                .getApplicationDataDictionary(applVerID);
 
         final quickfix.Message message = messageFactory.create(beginString, msgType);
         final DataDictionary payloadDictionary = MessageUtils.isAdminMessage(msgType)
@@ -183,7 +180,7 @@ public class MessageUtils {
     }
 
     public static boolean isAdminMessage(String msgType) {
-        return msgType.length() == 1 && "0A12345h".indexOf(msgType) != -1;
+        return msgType.length() == 1 && "0A12345".indexOf(msgType) != -1;
     }
 
     public static boolean isHeartbeat(String message) {
