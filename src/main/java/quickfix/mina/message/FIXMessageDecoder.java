@@ -346,9 +346,7 @@ public class FIXMessageDecoder implements MessageDecoder {
                 return -1;
             }
         }
-        if(dataOffset < data.length) {
-            return -1;
-        }
+
         return bufferOffset - initOffset;
     }
 
