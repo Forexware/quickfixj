@@ -34,6 +34,8 @@ public class ApplVerID extends StringField
   public static final String FIX43 = "5"; 
   public static final String FIX44 = "6"; 
   public static final String FIX50 = "7"; 
+  public static final String FIX50SP1 = "8"; 
+  public static final String FIX50SP2 = "9"; 
   
   public ApplVerID() 
   { 

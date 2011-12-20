@@ -9798,7 +9798,7 @@ public class ExecutionReport extends Message
     static final long serialVersionUID = 20050617;
     public NoLegs() {
         super(555, 600,
-            new int[] {600, 601, 602, 603, 604, 607, 608, 609, 764, 610, 611, 248, 249, 250, 251, 252, 253, 257, 599, 596, 597, 598, 254, 612, 942, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 556, 740, 739, 955, 956, 999, 1001, 687, 690, 683, 564, 565, 539, 654, 566, 587, 588, 637, 685, 675, 1073, 1074, 1075,  0 } );
+            new int[] {600, 601, 602, 603, 604, 607, 608, 609, 764, 610, 611, 248, 249, 250, 251, 252, 253, 257, 599, 596, 597, 598, 254, 612, 942, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 556, 740, 739, 955, 956, 999, 1001, 687, 685, 690, 683, 564, 565, 539, 654, 566, 587, 588, 637, 675, 1073, 1074, 1075,  0 } );
     }
     
   public void set(quickfix.fix50.component.InstrumentLeg component)
@@ -11099,6 +11099,34 @@ public class ExecutionReport extends Message
     return isSetField(687);
   }
   
+  public void set(quickfix.field.LegOrderQty value)
+  {
+    setField(value);
+  }
+
+  public quickfix.field.LegOrderQty get(quickfix.field.LegOrderQty  value) throws FieldNotFound
+  {
+    getField(value);
+    return value;
+  }
+
+  public quickfix.field.LegOrderQty getLegOrderQty() throws FieldNotFound
+  {
+    quickfix.field.LegOrderQty value = new quickfix.field.LegOrderQty();
+    getField(value);
+    return value;
+  }
+
+  public boolean isSet(quickfix.field.LegOrderQty field)
+  {
+    return isSetField(field);
+  }
+
+  public boolean isSetLegOrderQty()
+  {
+    return isSetField(685);
+  }
+  
   public void set(quickfix.field.LegSwapType value)
   {
     setField(value);
@@ -11685,34 +11713,6 @@ public class ExecutionReport extends Message
   public boolean isSetLegLastPx()
   {
     return isSetField(637);
-  }
-  
-  public void set(quickfix.field.LegOrderQty value)
-  {
-    setField(value);
-  }
-
-  public quickfix.field.LegOrderQty get(quickfix.field.LegOrderQty  value) throws FieldNotFound
-  {
-    getField(value);
-    return value;
-  }
-
-  public quickfix.field.LegOrderQty getLegOrderQty() throws FieldNotFound
-  {
-    quickfix.field.LegOrderQty value = new quickfix.field.LegOrderQty();
-    getField(value);
-    return value;
-  }
-
-  public boolean isSet(quickfix.field.LegOrderQty field)
-  {
-    return isSetField(field);
-  }
-
-  public boolean isSetLegOrderQty()
-  {
-    return isSetField(685);
   }
   
   public void set(quickfix.field.LegSettlCurrency value)

@@ -346,7 +346,6 @@ public class FIXMessageDecoder implements MessageDecoder {
                 return -1;
             }
         }
-
         return bufferOffset - initOffset;
     }
 
