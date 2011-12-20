@@ -404,9 +404,6 @@ public class CachedFileStore implements MessageStore {
         initialize(true);
     }
 
-    /**
-     * @author mratsimbazafy 29 août 2008
-     */
     private class CachedHashMap implements Map<Long, long[]> {
 
         private final TreeMap<Long, long[]> cacheIndex = new TreeMap<Long, long[]>();
