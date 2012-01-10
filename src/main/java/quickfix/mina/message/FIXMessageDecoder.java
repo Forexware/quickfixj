@@ -163,12 +163,11 @@ public class FIXMessageDecoder implements MessageDecoder {
 
                 if (state == PARSING_LENGTH) {
                     byte ch = 0;
-                    while (hasRemaining(in)) {
+                    while (hasRemaining(in) && ch != '\001') {
                         ch = get(in);
-                        if (!Character.isDigit((char) ch)) {
-                            break;
+                        if (Character.isDigit((char) ch)) {
+                            bodyLength = bodyLength * 10 + (ch - '0');
                         }
-                        bodyLength = bodyLength * 10 + (ch - '0');
                     }
                     if (ch == '\001') {
                         state = READING_BODY;
