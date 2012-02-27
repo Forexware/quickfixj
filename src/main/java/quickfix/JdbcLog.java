@@ -51,9 +51,7 @@ class JdbcLog extends AbstractLog {
     public JdbcLog(SessionSettings settings, SessionID sessionID, DataSource ds)
             throws SQLException, ClassNotFoundException, ConfigError, FieldConvertError {
         this.sessionID = sessionID;
-        dataSource = ds == null
-                ? JdbcUtil.getDataSource(settings, sessionID)
-                : ds;
+        dataSource = ds;
 
         if (settings.isSetting(SETTING_JDBC_LOG_HEARTBEATS)) {
             logHeartbeats = settings.getBool(SETTING_JDBC_LOG_HEARTBEATS);

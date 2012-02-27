@@ -26,30 +26,6 @@ package quickfix;
  */
 public class JdbcSetting {
     /**
-     * Setting for JDBC driver. This key is used for both the message store and
-     * the session log.
-     */
-    public static final String SETTING_JDBC_DRIVER = "JdbcDriver";
-
-    /**
-     * Setting for JDBC URL. This key is used for both the message store and the
-     * session log.
-     */
-    public static final String SETTING_JDBC_CONNECTION_URL = "JdbcURL";
-
-    /**
-     * Setting for JDBC user. This key is used for both the message store and
-     * the session log.
-     */
-    public static final String SETTING_JDBC_USER = "JdbcUser";
-
-    /**
-     * Setting for JDBC password. This key is used for both the message store
-     * and the session log.
-     */
-    public static final String SETTING_JDBC_PASSWORD = "JdbcPassword";
-
-    /**
      * Defines the table name for the messages table. Default is "messages".
      * If you use a different name, you must set up your database accordingly.
      */
@@ -60,21 +36,6 @@ public class JdbcSetting {
      * If you use a different name, you must set up your database accordingly.
      */
     public static final String SETTING_JDBC_STORE_SESSIONS_TABLE_NAME = "JdbcStoreSessionsTableName";
-
-    /**
-     * The JNDI name used to lookup a DataSource for the JDBC plugins.
-     */
-    public static final String SETTING_JDBC_DS_NAME = "JdbcDataSourceName";
-
-    /**
-     * The class name of the JNDI initial context factory.
-     */
-    public static final String SETTING_JNDI_CONTEXT_FACTORY = "JndiContextFactory";
-
-    /**
-     * The JNDI provider URL.
-     */
-    public static final String SETTING_JNDI_PROVIDER_URL = "JndiProviderURL";
 
     /**
      * Flag for controlling logging of heartbeat messages.

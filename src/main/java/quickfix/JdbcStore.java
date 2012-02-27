@@ -74,7 +74,7 @@ class JdbcStore implements MessageStore {
             defaultSessionIdPropertyValue = SessionID.NOT_SET;
         }
 
-        dataSource = ds == null ? JdbcUtil.getDataSource(settings, sessionID) : ds;
+        dataSource = ds;
 
         // One table is sampled for the extended session ID columns. Be sure
         // that all tables are extended if you extend any of them.

@@ -19,71 +19,10 @@
 
 package quickfix;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
-import java.beans.PropertyVetoException;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.*;
 
 class JdbcUtil {
-
-    private static Map<String, ComboPooledDataSource> dataSources = new ConcurrentHashMap<String, ComboPooledDataSource>();
-
-    static DataSource getDataSource(SessionSettings settings, SessionID sessionID)
-            throws ConfigError, FieldConvertError {
-        if (settings.isSetting(sessionID, JdbcSetting.SETTING_JDBC_DS_NAME)) {
-            String jndiName = settings.getString(sessionID, JdbcSetting.SETTING_JDBC_DS_NAME);
-            try {
-                return (DataSource) new InitialContext().lookup(jndiName);
-            } catch (NamingException e) {
-                throw new ConfigError(e);
-            }
-        } else {
-            String jdbcDriver = settings.getString(sessionID, JdbcSetting.SETTING_JDBC_DRIVER);
-            String connectionURL = settings.getString(sessionID,
-                    JdbcSetting.SETTING_JDBC_CONNECTION_URL);
-            String user = settings.getString(sessionID, JdbcSetting.SETTING_JDBC_USER);
-            String password = settings.getString(sessionID, JdbcSetting.SETTING_JDBC_PASSWORD);
-
-            return getDataSource(jdbcDriver, connectionURL, user, password, true);
-        }
-    }
-
-    /**
-     * This is typically called from a single thread, but just in case we are synchronizing modification
-     * of the cache. The cache itself is thread safe.
-     */
-    static synchronized DataSource getDataSource(String jdbcDriver, String connectionURL, String user, String password, boolean cache) {
-        String key = jdbcDriver + "#" + connectionURL + "#" + user + "#" + password;
-        ComboPooledDataSource connPool = cache ? dataSources.get(key) : null;
-
-        if (connPool == null) {
-            connPool = new ComboPooledDataSource();
-            try {
-                connPool.setDriverClass(jdbcDriver);
-            } catch (final PropertyVetoException e) {
-                throw new RuntimeException(e.getMessage(), e);
-            }
-            connPool.setJdbcUrl(connectionURL);
-            connPool.setUser(user);
-            connPool.setPassword(password);
-            
-            if (cache) {
-                dataSources.put(key, connPool);
-            }
-        }
-        return connPool;
-    }
-
 
     static void close(SessionID sessionID, Connection connection) {
         if (connection != null) {

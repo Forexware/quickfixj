@@ -26,13 +26,14 @@ import javax.sql.DataSource;
  */
 public class JdbcStoreFactory implements MessageStoreFactory {
     private final SessionSettings settings;
-    private DataSource dataSource;
+    private final DataSource dataSource;
     
     /**
      * Create a factory using session settings.
      */
-    public JdbcStoreFactory(SessionSettings settings) {
+    public JdbcStoreFactory(SessionSettings settings, DataSource dataSource) {
         this.settings = settings;
+        this.dataSource = dataSource;
     }
 
     /**
@@ -57,8 +58,5 @@ public class JdbcStoreFactory implements MessageStoreFactory {
     protected SessionSettings getSettings() {
         return settings;
     }
-    
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+
 }
