@@ -3429,8 +3429,8 @@
       </group>
     </component>
     <component name="MDFullGrp">
-      <group name="NoMDEntries" required="Y">
-        <field name="MDEntryType" required="Y"/>
+        <group name="NoMDEntries" required="Y">
+            <field name="MDEntryType" required="Y"/>
         <field name="MDEntryPx" required="N"/>
         <field name="Currency" required="N"/>
         <field name="MDEntrySize" required="N"/>
@@ -3476,74 +3476,77 @@
         <field name="DealingCapacity" required="N"/>
         <field name="MDEntrySpotRate" required="N"/>
         <field name="MDEntryForwardPoints" required="N"/>
-        <field name="MDEntryID" required="N"/>
-        <component name="Parties"/>
-        <field name="SecondaryOrderID" required="N"/>
-        <field name="OrdType" required="N"/>
-      </group>
+            <component name="Parties"/>
+            <field name="SecondaryOrderID" required="N"/>
+            <field name="OrdType" required="N"/>
+        </group>
     </component>
     <component name="MDIncGrp">
-      <group name="NoMDEntries" required="Y">
-        <field name="MDUpdateAction" required="Y"/>
-        <field name="DeleteReason" required="N"/>
-        <field name="MDEntryType" required="N"/>
-        <field name="MDEntryID" required="N"/>
-        <field name="MDEntryRefID" required="N"/>
-        <component name="Instrument"/>
-        <component name="UndInstrmtGrp"/>
-        <component name="InstrmtLegGrp"/>
-        <field name="FinancialStatus" required="N"/>
-        <field name="CorporateAction" required="N"/>
-        <field name="MDEntryPx" required="N"/>
-        <field name="Currency" required="N"/>
-        <field name="MDEntrySize" required="N"/>
-        <field name="MDEntryDate" required="N"/>
-        <field name="MDEntryTime" required="N"/>
-        <field name="TickDirection" required="N"/>
-        <field name="MDMkt" required="N"/>
-        <field name="TradingSessionID" required="N"/>
-        <field name="TradingSessionSubID" required="N"/>
-        <field name="QuoteCondition" required="N"/>
-        <field name="TradeCondition" required="N"/>
-        <field name="MDEntryOriginator" required="N"/>
-        <field name="LocationID" required="N"/>
-        <field name="DeskID" required="N"/>
-        <field name="OpenCloseSettlFlag" required="N"/>
-        <field name="TimeInForce" required="N"/>
-        <field name="ExpireDate" required="N"/>
-        <field name="ExpireTime" required="N"/>
-        <field name="MinQty" required="N"/>
-        <field name="ExecInst" required="N"/>
-        <field name="SellerDays" required="N"/>
-        <field name="OrderID" required="N"/>
-        <field name="QuoteEntryID" required="N"/>
-        <field name="MDEntryBuyer" required="N"/>
-        <field name="MDEntrySeller" required="N"/>
-        <field name="NumberOfOrders" required="N"/>
-        <field name="MDEntryPositionNo" required="N"/>
-        <field name="Scope" required="N"/>
-        <field name="PriceDelta" required="N"/>
-        <field name="NetChgPrevDay" required="N"/>
-        <field name="Text" required="N"/>
-        <field name="EncodedTextLen" required="N"/>
-        <field name="EncodedText" required="N"/>
-        <field name="OrderCapacity" required="N"/>
-        <field name="MDOriginType" required="N"/>
-        <field name="HighPx" required="N"/>
-        <field name="LowPx" required="N"/>
-        <field name="TradeVolume" required="N"/>
-        <field name="SettlType" required="N"/>
-        <field name="SettlDate" required="N"/>
-        <field name="MDQuoteType" required="N"/>
-        <field name="RptSeq" required="N"/>
-        <field name="DealingCapacity" required="N"/>
-        <field name="MDEntrySpotRate" required="N"/>
-        <field name="MDEntryForwardPoints" required="N"/>
-        <field name="MDPriceLevel" required="N"/>
-        <component name="Parties"/>
-        <field name="SecondaryOrderID" required="N"/>
-        <field name="OrdType" required="N"/>
-      </group>
+        <group name="NoMDEntries" required="Y">
+            <field name="MDUpdateAction" required="Y"/>
+            <field name="DeleteReason" required="N"/>
+            <field name="MDEntryType" required="N"/>
+            <field name="MDEntryID" required="N"/>
+            <field name="MDEntryRefID" required="N"/>
+            <field name="MDStreamID" required="N"/>
+            <component name="Instrument"/>
+            <component name="UndInstrmtGrp"/>
+            <component name="InstrmtLegGrp"/>
+            <field name="FinancialStatus" required="N"/>
+            <field name="CorporateAction" required="N"/>
+            <field name="MDEntryPx" required="N"/>
+            <field name="Currency" required="N"/>
+            <field name="MDEntrySize" required="N"/>
+            <field name="MDEntryDate" required="N"/>
+            <field name="MDEntryTime" required="N"/>
+            <field name="TickDirection" required="N"/>
+            <field name="MDMkt" required="N"/>
+            <field name="TradingSessionID" required="N"/>
+            <field name="TradingSessionSubID" required="N"/>
+            <field name="QuoteCondition" required="N"/>
+            <field name="TradeCondition" required="N"/>
+            <field name="MDEntryOriginator" required="N"/>
+            <field name="LocationID" required="N"/>
+            <field name="DeskID" required="N"/>
+            <field name="OpenCloseSettlFlag" required="N"/>
+            <field name="TimeInForce" required="N"/>
+            <field name="ExpireDate" required="N"/>
+            <field name="ExpireTime" required="N"/>
+            <field name="MinQty" required="N"/>
+            <field name="ExecInst" required="N"/>
+            <field name="SellerDays" required="N"/>
+            <field name="OrderID" required="N"/>
+            <field name="QuoteEntryID" required="N"/>
+            <field name="MDEntryBuyer" required="N"/>
+            <field name="MDEntrySeller" required="N"/>
+            <field name="NumberOfOrders" required="N"/>
+            <field name="MDEntryPositionNo" required="N"/>
+            <field name="Scope" required="N"/>
+            <field name="PriceDelta" required="N"/>
+            <field name="NetChgPrevDay" required="N"/>
+            <field name="Text" required="N"/>
+            <field name="EncodedTextLen" required="N"/>
+            <field name="EncodedText" required="N"/>
+            <field name="OrderCapacity" required="N"/>
+            <field name="MDOriginType" required="N"/>
+            <field name="HighPx" required="N"/>
+            <field name="LowPx" required="N"/>
+            <field name="TradeVolume" required="N"/>
+            <field name="SettlType" required="N"/>
+            <field name="SettlDate" required="N"/>
+            <!-- TransBkdTime and TransactTime added because they are in 5.0 sp2 -->
+            <field name="TransBkdTime" required="N"/>
+            <field name="TransactTime" required="N"/>
+            <field name="MDQuoteType" required="N"/>
+            <field name="RptSeq" required="N"/>
+            <field name="DealingCapacity" required="N"/>
+            <field name="MDEntrySpotRate" required="N"/>
+            <field name="MDEntryForwardPoints" required="N"/>
+            <field name="MDPriceLevel" required="N"/>
+            <component name="Parties"/>
+            <field name="SecondaryOrderID" required="N"/>
+            <field name="OrdType" required="N"/>
+        </group>
     </component>
     <component name="MDReqGrp">
       <group name="NoMDEntryTypes" required="Y">

@@ -9,18 +9,18 @@ public class MDFullGrp extends quickfix.MessageComponent
 
   static final long serialVersionUID = 20050617;
   public static final String MSGTYPE = "";
-  
+
   private int[] componentFields = {  };
   protected int[] getFields() { return componentFields; }
   private int[] componentGroups = { 268,  };
   protected int[] getGroupFields() { return componentGroups; }
-  
+
 
   public MDFullGrp()
   {
     super();
   }
-  
+
   public void set(quickfix.field.NoMDEntries value)
   {
     setField(value);
@@ -48,14 +48,14 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(268);
   }
-  
+
   public static class NoMDEntries extends Group {
     static final long serialVersionUID = 20050617;
     public NoMDEntries() {
         super(268, 269,
-            new int[] {269, 270, 15, 271, 272, 273, 274, 275, 336, 625, 276, 277, 282, 283, 284, 286, 59, 432, 126, 110, 18, 287, 37, 299, 288, 289, 346, 290, 546, 811, 58, 354, 355, 1023, 528, 1024, 332, 333, 1020, 63, 64, 1070, 83, 1048, 1026, 1027, 278, 453, 198, 40,  0 } );
+                new int[] {269, 278, 270, 15, 271, 272, 273, 274, 275, 336, 625, 276, 277, 282, 283, 284, 286, 59, 432, 126, 110, 18, 287, 37, 299, 288, 289, 346, 290, 546, 811, 58, 354, 355, 1023, 528, 1024, 332, 333, 1020, 63, 64, 1070, 83, 1048, 1026, 1027, 453, 198, 40, 0 } );
     }
-    
+
   public void set(quickfix.field.MDEntryType value)
   {
     setField(value);
@@ -83,7 +83,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(269);
   }
-  
+
   public void set(quickfix.field.MDEntryPx value)
   {
     setField(value);
@@ -111,7 +111,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(270);
   }
-  
+
   public void set(quickfix.field.Currency value)
   {
     setField(value);
@@ -139,7 +139,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(15);
   }
-  
+
   public void set(quickfix.field.MDEntrySize value)
   {
     setField(value);
@@ -167,7 +167,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(271);
   }
-  
+
   public void set(quickfix.field.MDEntryDate value)
   {
     setField(value);
@@ -195,7 +195,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(272);
   }
-  
+
   public void set(quickfix.field.MDEntryTime value)
   {
     setField(value);
@@ -223,7 +223,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(273);
   }
-  
+
   public void set(quickfix.field.TickDirection value)
   {
     setField(value);
@@ -251,7 +251,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(274);
   }
-  
+
   public void set(quickfix.field.MDMkt value)
   {
     setField(value);
@@ -279,7 +279,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(275);
   }
-  
+
   public void set(quickfix.field.TradingSessionID value)
   {
     setField(value);
@@ -307,7 +307,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(336);
   }
-  
+
   public void set(quickfix.field.TradingSessionSubID value)
   {
     setField(value);
@@ -335,7 +335,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(625);
   }
-  
+
   public void set(quickfix.field.QuoteCondition value)
   {
     setField(value);
@@ -363,7 +363,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(276);
   }
-  
+
   public void set(quickfix.field.TradeCondition value)
   {
     setField(value);
@@ -391,7 +391,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(277);
   }
-  
+
   public void set(quickfix.field.MDEntryOriginator value)
   {
     setField(value);
@@ -419,7 +419,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(282);
   }
-  
+
   public void set(quickfix.field.LocationID value)
   {
     setField(value);
@@ -447,7 +447,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(283);
   }
-  
+
   public void set(quickfix.field.DeskID value)
   {
     setField(value);
@@ -475,7 +475,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(284);
   }
-  
+
   public void set(quickfix.field.OpenCloseSettlFlag value)
   {
     setField(value);
@@ -503,7 +503,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(286);
   }
-  
+
   public void set(quickfix.field.TimeInForce value)
   {
     setField(value);
@@ -531,7 +531,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(59);
   }
-  
+
   public void set(quickfix.field.ExpireDate value)
   {
     setField(value);
@@ -559,7 +559,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(432);
   }
-  
+
   public void set(quickfix.field.ExpireTime value)
   {
     setField(value);
@@ -587,7 +587,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(126);
   }
-  
+
   public void set(quickfix.field.MinQty value)
   {
     setField(value);
@@ -615,7 +615,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(110);
   }
-  
+
   public void set(quickfix.field.ExecInst value)
   {
     setField(value);
@@ -643,7 +643,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(18);
   }
-  
+
   public void set(quickfix.field.SellerDays value)
   {
     setField(value);
@@ -671,7 +671,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(287);
   }
-  
+
   public void set(quickfix.field.OrderID value)
   {
     setField(value);
@@ -699,7 +699,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(37);
   }
-  
+
   public void set(quickfix.field.QuoteEntryID value)
   {
     setField(value);
@@ -727,7 +727,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(299);
   }
-  
+
   public void set(quickfix.field.MDEntryBuyer value)
   {
     setField(value);
@@ -755,7 +755,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(288);
   }
-  
+
   public void set(quickfix.field.MDEntrySeller value)
   {
     setField(value);
@@ -783,7 +783,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(289);
   }
-  
+
   public void set(quickfix.field.NumberOfOrders value)
   {
     setField(value);
@@ -811,7 +811,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(346);
   }
-  
+
   public void set(quickfix.field.MDEntryPositionNo value)
   {
     setField(value);
@@ -839,7 +839,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(290);
   }
-  
+
   public void set(quickfix.field.Scope value)
   {
     setField(value);
@@ -867,7 +867,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(546);
   }
-  
+
   public void set(quickfix.field.PriceDelta value)
   {
     setField(value);
@@ -895,7 +895,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(811);
   }
-  
+
   public void set(quickfix.field.Text value)
   {
     setField(value);
@@ -923,7 +923,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(58);
   }
-  
+
   public void set(quickfix.field.EncodedTextLen value)
   {
     setField(value);
@@ -951,7 +951,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(354);
   }
-  
+
   public void set(quickfix.field.EncodedText value)
   {
     setField(value);
@@ -979,7 +979,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(355);
   }
-  
+
   public void set(quickfix.field.MDPriceLevel value)
   {
     setField(value);
@@ -1007,7 +1007,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1023);
   }
-  
+
   public void set(quickfix.field.OrderCapacity value)
   {
     setField(value);
@@ -1035,7 +1035,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(528);
   }
-  
+
   public void set(quickfix.field.MDOriginType value)
   {
     setField(value);
@@ -1063,7 +1063,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1024);
   }
-  
+
   public void set(quickfix.field.HighPx value)
   {
     setField(value);
@@ -1091,7 +1091,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(332);
   }
-  
+
   public void set(quickfix.field.LowPx value)
   {
     setField(value);
@@ -1119,7 +1119,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(333);
   }
-  
+
   public void set(quickfix.field.TradeVolume value)
   {
     setField(value);
@@ -1147,7 +1147,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1020);
   }
-  
+
   public void set(quickfix.field.SettlType value)
   {
     setField(value);
@@ -1175,7 +1175,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(63);
   }
-  
+
   public void set(quickfix.field.SettlDate value)
   {
     setField(value);
@@ -1203,7 +1203,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(64);
   }
-  
+
   public void set(quickfix.field.MDQuoteType value)
   {
     setField(value);
@@ -1231,7 +1231,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1070);
   }
-  
+
   public void set(quickfix.field.RptSeq value)
   {
     setField(value);
@@ -1259,7 +1259,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(83);
   }
-  
+
   public void set(quickfix.field.DealingCapacity value)
   {
     setField(value);
@@ -1287,7 +1287,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1048);
   }
-  
+
   public void set(quickfix.field.MDEntrySpotRate value)
   {
     setField(value);
@@ -1315,7 +1315,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1026);
   }
-  
+
   public void set(quickfix.field.MDEntryForwardPoints value)
   {
     setField(value);
@@ -1343,7 +1343,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(1027);
   }
-  
+
   public void set(quickfix.field.MDEntryID value)
   {
     setField(value);
@@ -1371,7 +1371,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(278);
   }
-  
+
   public void set(quickfix.fix50.component.Parties component)
   {
     setComponent(component);
@@ -1390,7 +1390,7 @@ public class MDFullGrp extends quickfix.MessageComponent
     return component;
   }
 
-  
+
   public void set(quickfix.field.NoPartyIDs value)
   {
     setField(value);
@@ -1418,14 +1418,14 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(453);
   }
-  
+
   public static class NoPartyIDs extends Group {
     static final long serialVersionUID = 20050617;
     public NoPartyIDs() {
         super(453, 448,
             new int[] {448, 447, 452, 802,  0 } );
     }
-    
+
   public void set(quickfix.field.PartyID value)
   {
     setField(value);
@@ -1453,7 +1453,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(448);
   }
-  
+
   public void set(quickfix.field.PartyIDSource value)
   {
     setField(value);
@@ -1481,7 +1481,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(447);
   }
-  
+
   public void set(quickfix.field.PartyRole value)
   {
     setField(value);
@@ -1509,7 +1509,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(452);
   }
-  
+
   public void set(quickfix.fix50.component.PtysSubGrp component)
   {
     setComponent(component);
@@ -1528,7 +1528,7 @@ public class MDFullGrp extends quickfix.MessageComponent
     return component;
   }
 
-  
+
   public void set(quickfix.field.NoPartySubIDs value)
   {
     setField(value);
@@ -1556,14 +1556,14 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(802);
   }
-  
+
   public static class NoPartySubIDs extends Group {
     static final long serialVersionUID = 20050617;
     public NoPartySubIDs() {
         super(802, 523,
             new int[] {523, 803,  0 } );
     }
-    
+
   public void set(quickfix.field.PartySubID value)
   {
     setField(value);
@@ -1591,7 +1591,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(523);
   }
-  
+
   public void set(quickfix.field.PartySubIDType value)
   {
     setField(value);
@@ -1619,11 +1619,11 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(803);
   }
-  
+
   }
-  
+
   }
-  
+
   public void set(quickfix.field.SecondaryOrderID value)
   {
     setField(value);
@@ -1651,7 +1651,7 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(198);
   }
-  
+
   public void set(quickfix.field.OrdType value)
   {
     setField(value);
@@ -1679,8 +1679,8 @@ public class MDFullGrp extends quickfix.MessageComponent
   {
     return isSetField(40);
   }
-  
+
   }
-  
+
 }
   
