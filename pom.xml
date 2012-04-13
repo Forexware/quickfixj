@@ -3,7 +3,7 @@
 
 	<groupId>com.bostontechnologies</groupId>
 	<artifactId>quickfixj</artifactId>
-	<version>1.5.2-BT-5-SNAPSHOT</version>
+	<version>1.5.2-BT-5</version>
 	<packaging>jar</packaging>
 
 	<name>quickfixj</name>
